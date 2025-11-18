@@ -40,7 +40,7 @@
 
     // page margins
      #place(dx: firstpage-margin-x, dy: firstpage-margin-y, [
-        #box(/*debug: fill: red,*/ height: 100%-(2*firstpage-margin-y), width: 100%-(2*firstpage-margin-x),
+        #box(/*fill: red,*/ height: 100%-(2*firstpage-margin-y), width: 100%-(2*firstpage-margin-x),
         [
           //doc type (essay,thesis,..)
           #box(width: 100%, [
