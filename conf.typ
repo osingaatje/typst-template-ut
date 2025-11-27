@@ -4,6 +4,8 @@
   abstract: [],
   doc,
 ) = {
+  set heading(numbering: "1.")
+
   //region: FONTS
   show title: t => text(
     font: "UniversNW02-720CdHeavy", 
