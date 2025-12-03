@@ -4,7 +4,13 @@
   abstract: [],
   doc,
 ) = {
+  // Headings
   set heading(numbering: "1.")
+
+  // link styling
+  show link: l => underline[
+    #text(fill: rgb("#0074d9"), style: "italic", [#l])
+  ]
 
   //region: FONTS
   show title: t => text(
