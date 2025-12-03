@@ -7,11 +7,6 @@
   // Headings
   set heading(numbering: "1.")
 
-  // link styling
-  show link: l => underline[
-    #text(fill: rgb("#0074d9"), style: "italic", [#l])
-  ]
-
   //region: FONTS
   show title: t => text(
     font: "UniversNW02-720CdHeavy", 
@@ -69,9 +64,12 @@
           #box(width: 100%, [
             #grid(columns: (1fr,) * calc.min(authors.len(), 3), row-gutter: 18pt,
               ..authors.map(a => [
-                #text(size: 16pt, fill: white, [
+                #box(inset: (y: -.5em),
+                  text(size: 16pt, fill: white, [
                     #a.name
-                ]) \
+                  ])
+                )
+               
                 #text(size: 12pt, fill: white, [
                   #link("mailto:"+a.email)
                 ])
@@ -85,9 +83,18 @@
           ])
         ])
       ])
+
+    
+    
     ]
   )
   counter(page).update(1) // reset page counter to 1 for the actual content
+
+  // link styling
+  show link: it => {
+    set text(fill: rgb("#0074d9"), style: "italic")
+    underline[#it]
+  }
 
   doc
 }
