@@ -10,6 +10,11 @@
   // Headings
   set heading(numbering: "1.")
 
+  show cite: s => [#text(fill: blue, [#s]) ]
+  show ref: r => [#text(fill: blue, [#r]) ]
+  // footnote magic: settings the font size of the character
+  set footnote(numbering: (t) => [ #text(size: 24pt, [#t]) ]) // some weird thing with the UT fonts
+
   //region: FONTS
   show title: t => text(
     font: "UniversNW02-720CdHeavy", 
