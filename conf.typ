@@ -1,6 +1,9 @@
 #let conf(
+  date: (),
   doctyp: [],
   authors: (),
+  supervisors: (),
+  faculty: (),
   abstract: [],
   doc,
 ) = {
@@ -46,13 +49,15 @@
         #box(/*fill: red,*/ height: 100%-(2*firstpage-margin-y), width: 100%-(2*firstpage-margin-x),
         [
           //doc type (essay,thesis,..)
-          #box(width: 100%, [
-            #text(
-              fill: white,
-              [#upper[#doctyp]]
-            )
-          ])
+          #text(
+            fill: white,
+            [#upper[#doctyp]]
+          )
           
+          #place(top+right, [
+            #text(fill: white, if date.len() > 1 { date } else { datetime.today().display() })
+          ])
+
           //title
           #box(width: 100%, height: 20%, inset: (y: 2em), [
             #place(top+left,
@@ -75,6 +80,39 @@
                 ])
               ])
             )
+          ])
+
+        // supervisors
+        #box(width: 100%, inset: (top: 25pt), [
+            #grid(columns: (1fr,) * calc.min(supervisors.len(), 3), row-gutter: 18pt,
+              ..supervisors.map(s => [
+                #box(width: 100%, inset: (y: 0pt), [
+                  #text(
+                    font: "UniversNW02-720CdHeavy", 
+                    fill: white,
+                    weight: 900,
+                    size: 12pt,
+                    "Supervisor" + if s.at("institution", default: "") != "" [ #text("@ " + s.institution) ] else []
+                )])
+
+
+                #box(inset: (y: -.5em),
+                  text(size: 16pt, fill: white, [
+                    #s.name
+                  ])
+                )
+               
+                #text(size: 12pt, fill: white, [
+                  #link("mailto:"+s.email)
+                ])
+              ])
+            )
+          ])
+
+          #place(bottom+left, [
+            #box(width: 40%, [
+              #text(fill: white, faculty)
+            ])
           ])
 
           // UT logo
