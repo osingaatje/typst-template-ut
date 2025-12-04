@@ -12,8 +12,9 @@
 
   show cite: s => [#text(fill: blue, [#s]) ]
   show ref: r => [#text(fill: blue, [#r]) ]
+  
   // footnote magic: settings the font size of the character
-  set footnote(numbering: (t) => [ #text(size: 24pt, [#t]) ]) // some weird thing with the UT fonts
+  set footnote(numbering: (t) => [ #box(height: 10pt, inset: (top: -5pt), [ #text(size: 28pt, [#t]) ]) ]) // some weird thing with the UT fonts
 
   //region: FONTS
   show title: t => text(
