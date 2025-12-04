@@ -59,18 +59,17 @@
           ])
 
           //title
-          #box(width: 100%, height: 20%, inset: (y: 2em), [
-            #place(top+left,
-            [
+          #box(width: 100%, inset: (y: 15pt), [
               #upper[#title()]
-            ])
           ])
           // author(s)
-          #box(width: 100%, [
+          #box(width: 100%, inset: (top: 15pt), [
             #grid(columns: (1fr,) * calc.min(authors.len(), 3), row-gutter: 18pt,
               ..authors.map(a => [
                 #box(inset: (y: -.5em),
-                  text(size: 16pt, fill: white, [
+                  text(
+                  weight: 600,
+                  size: 16pt, fill: white, [
                     #a.name
                   ])
                 )
