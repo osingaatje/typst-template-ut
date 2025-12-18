@@ -115,14 +115,21 @@
 
           #place(bottom+left, [
             #box(width: 40%, [
-              #text(fill: white, faculty)
+              #text(size: 10pt, fill: white, top-edge: .5em, faculty)
             ])
           ])
 
           // UT logo
-          #place(bottom+right, dx: 1.4em, dy: 1.4em, [
-            #image("UT_Logo_White_RGB_EN.pdf", width:50%)
-          ])
+          #place(bottom+right, [
+            #box(width: 70%, [ 
+              #text(
+                      font: "UniversNW02-320CdLt",
+                      fill: white,
+                      weight: 400,
+                      size: 24pt, tracking: -1pt, stretch: 90%, kerning: true,
+                "UNIVERSITY OF TWENTE.")
+            ])
+            ])
         ])
       ])
     ]
