@@ -4,7 +4,6 @@
   authors: (),
   supervisors: (),
   faculty: (),
-  abstract: [],
   doc,
 ) = {
   // Headings
@@ -12,9 +11,9 @@
 
   show cite: s => [#text(fill: blue, [#s]) ]
   show ref: r => [#text(fill: blue, [#r]) ]
-  
+
   // footnote magic: settings the font size of the character
-  set footnote(numbering: (t) => [ #box(height: 10pt, inset: (top: -5pt), [ #text(size: 28pt, [#t]) ]) ]) // some weird thing with the UT fonts
+  set footnote(numbering: (t) => [ #box(height: 8pt, inset: (top: -6pt), [ #text(size: 28pt, [#t]) ]) ]) // some weird thing with the UT fonts
 
   //region: FONTS
   show title: t => text(
@@ -42,7 +41,7 @@
   // page layout
   let firstpage-margin-x = 4em
   let firstpage-margin-y = 4em
-  
+
   page(margin: 0em, columns: 1, fill: rgb(1,158,196),
     [
      #place(bottom, dy: -10%, [
@@ -59,7 +58,7 @@
             fill: white,
             [#upper[#doctyp]]
           )
-          
+
           #place(top+right, [
             #text(fill: white, if date.len() > 1 { date } else { datetime.today().display() })
           ])
@@ -79,7 +78,7 @@
                     #a.name
                   ])
                 )
-               
+
                 #text(size: 12pt, fill: white, [
                   #link("mailto:"+a.email)
                 ])
@@ -106,7 +105,7 @@
                     #s.name
                   ])
                 )
-               
+
                 #text(size: 12pt, fill: white, [
                   #link("mailto:"+s.email)
                 ])
@@ -126,19 +125,24 @@
           ])
         ])
       ])
-
-    
-    
     ]
   )
   counter(page).update(1) // reset page counter to 1 for the actual content
 
   // link styling
   show link: it => {
-    set text(fill: rgb("#0074d9"), style: "italic")
-    underline[#it]
+    text(fill: rgb("#0074d9"), [
+      #underline(it)
+    ])
   }
 
   doc
 }
+
+#let abstr(content: "") = [
+  #align(center, heading(level: 1, "Abstract", numbering: n => []))
+    #counter(heading).update(n => 0) // make Abstract the 0th heading, so the actual numbered headings count from 1 onwards :)
+   
+    #text(content)
+]
 
