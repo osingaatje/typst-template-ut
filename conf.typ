@@ -6,6 +6,9 @@
   faculty: (),
   doc,
 ) = {
+  // citation style
+  set cite(style: "modified-ieee.csl")
+
   // Headings
   set heading(numbering: "1.")
 
