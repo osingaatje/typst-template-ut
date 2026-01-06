@@ -4,6 +4,8 @@
   authors: (),
   supervisors: (),
   faculty: (),
+  margin-x: 1.5cm,
+  margin-y: 1.5cm,
   doc,
 ) = {
   // citation style
@@ -42,8 +44,8 @@
   //endregion
 
   // page layout
-  let firstpage-margin-x = 4em
-  let firstpage-margin-y = 4em
+  let firstpage-margin-x = margin-x
+  let firstpage-margin-y = margin-y
 
   page(margin: 0em, columns: 1, fill: rgb(1,158,196),
     [
