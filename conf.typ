@@ -1,3 +1,7 @@
+// colors
+#let blue = rgb("#007D9C")
+#let bluedark = rgb("#005D7D")
+
 #let conf(
   date: (),
   doctyp: [],
@@ -14,24 +18,28 @@
   // Headings
   set heading(numbering: "1.")
 
-  show cite: s => [#text(fill: blue, [#s]) ]
-  show ref: r => [#text(fill: blue, [#r]) ]
+  // citation, reference styling (link styling at bottom of conf.typ)
+  show cite: c => text(fill: blue, c)
+  show ref: r => box(text(fill: blue, r))
 
   // footnote magic: settings the font size of the character
-  set footnote(numbering: (t) => [ #box(height: 8pt, inset: (top: -6pt), [ #text(size: 28pt, [#t]) ]) ]) // some weird thing with the UT fonts
+  set footnote(numbering: (t) => [
+    #box(height: 8pt, width: 3pt, inset: (top: -6pt, left: 1pt), 
+      [ #text(fill: blue, size: 28pt, [#t]) ]
+    )]) // some weird thing with the UT fonts I guess.
 
   //region: FONTS
   show title: t => text(
     font: "UniversNW02-720CdHeavy", 
     fill: white, 
     size: 30pt, 
-    [#t]
+    t
   )
 
   show heading.where(level: 1): t => text(
     font: "UniversNW02-720CdHeavy",
     size: 18pt,
-    block(below: 1em)[#upper[#t]]
+    block(below: 1em, upper(t))
   )
   show heading: t => text(
     font: "UniversNW02-320CdLt",
@@ -47,11 +55,9 @@
   let firstpage-margin-x = margin-x
   let firstpage-margin-y = margin-y
 
-  page(margin: 0em, columns: 1, fill: rgb(1,158,196),
+  page(margin: 0em, columns: 1, fill: blue,
     [
-     #place(bottom, dy: -10%, [
-           #image("oo.png")
-          ])
+     #place(bottom, dy: -10%, image("oo.png"))
 
 
     // page margins
@@ -59,19 +65,14 @@
         #box(/*fill: red,*/ height: 100%-(2*firstpage-margin-y), width: 100%-(2*firstpage-margin-x),
         [
           //doc type (essay,thesis,..)
-          #text(
-            fill: white,
-            [#upper[#doctyp]]
+          #text(fill: white, upper(doctyp))
+
+          #place(top+right,
+            text(fill: white, if date.len() > 1 { date } else { datetime.today().display() })
           )
 
-          #place(top+right, [
-            #text(fill: white, if date.len() > 1 { date } else { datetime.today().display() })
-          ])
-
           //title
-          #box(width: 100%, inset: (y: 15pt), [
-              #upper[#title()]
-          ])
+          #box(width: 100%, inset: (y: 15pt), upper(title()))
           // author(s)
           #box(width: 100%, inset: (top: 15pt), [
             #grid(columns: (1fr,) * calc.min(authors.len(), 3), row-gutter: 18pt,
@@ -91,6 +92,7 @@
             )
           ])
 
+
         // supervisors
         #box(width: 100%, inset: (top: 25pt), [
             #grid(columns: (1fr,) * calc.min(supervisors.len(), 3), row-gutter: 18pt,
@@ -104,20 +106,17 @@
                     "Supervisor" + if s.at("institution", default: "") != "" [ #text("@ " + s.institution) ] else []
                 )])
 
-
+                // name and email address
                 #box(inset: (y: -.5em),
-                  text(size: 16pt, fill: white, [
-                    #s.name
-                  ])
+                  text(size: 16pt, fill: white, s.name)
                 )
 
-                #text(size: 12pt, fill: white, [
-                  #link("mailto:"+s.email)
-                ])
+                #text(size: 12pt, fill: white, link("mailto:"+s.email))
               ])
             )
           ])
 
+          // faculty
           #place(bottom+left, [
             #box(width: 40%, [
               #text(size: 10pt, fill: white, top-edge: .5em, faculty)
@@ -125,29 +124,22 @@
           ])
 
           // UT logo
-          #place(bottom+right, [
-            #box(width: 70%, [ 
-              #text(
+          #place(bottom+right,
+            box(width: 70%, text(
                       font: "UniversNW02-320CdLt",
                       fill: white,
                       weight: 400,
                       size: 24pt, tracking: -1pt, stretch: 90%, kerning: true,
                 "UNIVERSITY OF TWENTE.")
-            ])
-            ])
+          ))
         ])
       ])
     ]
   )
   counter(page).update(1) // reset page counter to 1 for the actual content
 
-  // link styling
-  show link: it => {
-    text(fill: rgb("#0074d9"), [
-      #underline(it)
-    ])
-  }
-
+  // link styling (must be after the main page to prevent email addresses from having underline
+  show link: it => text(fill: bluedark, underline(it))
   doc
 }
 
