@@ -24,7 +24,7 @@
 
   // footnote magic: settings the font size of the character
   set footnote(numbering: (t) => [
-    #box(height: 8pt, width: 3pt, inset: (top: -6pt, left: 1pt), 
+    #box(height: 8pt, width: 4pt, inset: (top: -6pt, left: 1pt), 
       [ #text(fill: blue, size: 28pt, [#t]) ]
     )]) // some weird thing with the UT fonts I guess.
 
