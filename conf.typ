@@ -20,11 +20,10 @@
   // Headings
   set heading(numbering: "1.")
 
-  // citation, reference styling (link styling at bottom of conf.typ)
+  // citation / reference / code fragment / figure caption styling (link styling at bottom of conf.typ)
   show cite: c => text(fill: blue, c)
   show ref: r => box(text(fill: blue, r))
   show raw: r => text(font: "JetBrains Mono", fill: navy, r)
-  `code fragment with raw shit on top or something`
   show figure.caption: c => box(inset: (left: 1pt, right: 1pt), text(fill: darkgray, size: 8pt, c))
 
   // footnote magic: settings the font size of the character
