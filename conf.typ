@@ -1,6 +1,8 @@
 // colors
 #let blue = rgb("#007D9C")
-#let bluedark = rgb("#005D7D")
+#let darkblue = rgb("#005D7D")
+#let navy = rgb("#002345")
+#let darkgray = rgb("#404040")
 
 #let conf(
   date: (),
@@ -21,6 +23,9 @@
   // citation, reference styling (link styling at bottom of conf.typ)
   show cite: c => text(fill: blue, c)
   show ref: r => box(text(fill: blue, r))
+  show raw: r => text(font: "JetBrains Mono", fill: navy, r)
+  `code fragment with raw shit on top or something`
+  show figure.caption: c => box(inset: (left: 1pt, right: 1pt), text(fill: darkgray, size: 8pt, c))
 
   // footnote magic: settings the font size of the character
   set footnote(numbering: (t) => [
@@ -139,7 +144,7 @@
   counter(page).update(1) // reset page counter to 1 for the actual content
 
   // link styling (must be after the main page to prevent email addresses from having underline
-  show link: it => text(fill: bluedark, underline(it))
+  show link: it => text(fill: darkblue, underline(it))
   doc
 }
 
