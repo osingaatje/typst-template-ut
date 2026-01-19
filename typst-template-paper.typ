@@ -1,8 +1,4 @@
-// colors
-#let blue = rgb("#007D9C")
-#let darkblue = rgb("#005D7D")
-#let navy = rgb("#002345")
-#let darkgray = rgb("#404040")
+#import "shared/typst-ut.typ": styling, colors
 
 #let conf(
   date: (),
@@ -14,55 +10,22 @@
   margin-y: 1.5cm,
   doc,
 ) = {
-  // citation style
-  set cite(style: "modified-ieee.csl")
+  set page(numbering: "1 / 1")
+  show: styling // apply the styling from typst-ut document
+
+  // specific raw styling colour
+  show raw: r => text(fill: navy, r)
 
   // Headings
   set heading(numbering: "1.")
-
-  // citation / reference / code fragment / figure caption styling (link styling at bottom of conf.typ)
-  show cite: c => text(fill: blue, c)
-  show ref: r => box(text(fill: blue, r))
-  show raw: r => text(font: "JetBrains Mono", fill: navy, r)
-  show figure.caption: c => box(inset: (left: 1pt, right: 1pt), text(fill: darkgray, size: 8pt, c))
-
-  // footnote magic: settings the font size of the character
-  set footnote(numbering: (t) => [
-    #box(height: 8pt, width: 4pt, inset: (top: -6pt, left: 1pt), 
-      [ #text(fill: blue, size: 28pt, [#t]) ]
-    )]) // some weird thing with the UT fonts I guess.
-
-  //region: FONTS
-  show title: t => text(
-    font: "UniversNW02-720CdHeavy", 
-    fill: white, 
-    size: 30pt, 
-    t
-  )
-
-  show heading.where(level: 1): t => text(
-    font: "UniversNW02-720CdHeavy",
-    size: 18pt,
-    block(below: 1em, upper(t))
-  )
-  show heading: t => text(
-    font: "UniversNW02-320CdLt",
-    t
-  )
-  show text: t => text(
-    font: "UniversNextW02",
-    t
-  )
-  //endregion
 
   // page layout
   let firstpage-margin-x = margin-x
   let firstpage-margin-y = margin-y
 
-  page(margin: 0em, columns: 1, fill: blue,
+  page(margin: 0em, columns: 1, fill: colors.blue,
     [
-     #place(bottom, dy: -10%, image("oo.png"))
-
+     #place(bottom, dy: -10%, image("shared/pics/oo.png"))
 
     // page margins
      #place(dx: firstpage-margin-x, dy: firstpage-margin-y, [
@@ -143,7 +106,7 @@
   counter(page).update(1) // reset page counter to 1 for the actual content
 
   // link styling (must be after the main page to prevent email addresses from having underline
-  show link: it => text(fill: darkblue, underline(it))
+  show link: it => text(fill: colors.darkblue, underline(it))
   doc
 }
 
@@ -153,4 +116,6 @@
    
     #text(content)
 ]
+
+
 

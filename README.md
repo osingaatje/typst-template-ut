@@ -1,5 +1,6 @@
 # typst-template-ut: An unofficial University of Twente Typst template
 Made by Douwe Osinga, inspired by previous work of Eli Saado.
+Beamer template inspired by work of Femke Weijsenfeld.
 
 # Fonts
 Local development with Typst and fonts is.. interesting. How I got my fonts to work was:
@@ -19,7 +20,7 @@ I recommend the following file structure:
  |-...
 ```
 
-..with `your-file.typ` (or whatever name you choose) containing the following use of the template:
+..with `your-file.typ` (or whatever name you choose) containing the following use of the template (example is for the paper format):
 ```typ
 #import "typst-template-ut/conf.typ" : conf
 
@@ -48,7 +49,8 @@ I recommend the following file structure:
 
 Your Content Goes Here
 
-``` 
+```
 
+Similar instructions apply for the beamer format :) 
 
 
