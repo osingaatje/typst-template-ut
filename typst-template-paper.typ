@@ -106,7 +106,7 @@
   counter(page).update(1) // reset page counter to 1 for the actual content
 
   // link styling (must be after the main page to prevent email addresses from having underline
-  show link: it => text(fill: colors.darkblue, underline(it))
+  show link: it => text(fill: colors.blue, underline(it))
   doc
 }
 
