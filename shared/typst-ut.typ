@@ -50,6 +50,13 @@
     font: "UniversNextW02",
     t
   )
+
+  // fix line spacing in table newlines
+  show table: t => {
+    set par(leading: 0.35em)
+    t
+  }
+
   //endregion
 
   doc
