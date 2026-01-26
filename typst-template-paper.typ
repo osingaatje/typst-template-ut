@@ -14,7 +14,7 @@
   show: styling // apply the styling from typst-ut document
 
   // specific raw styling colour
-  show raw: r => text(fill: navy, r)
+  show raw: r => box(fill: colors.lightblue, radius: 2pt, inset: (left: 2pt, right: 2pt, top: 1pt, bottom: 1pt), text(fill: navy, r))
 
   // Headings
   set heading(numbering: "1.")
@@ -108,6 +108,12 @@
   // link styling (must be after the main page to prevent email addresses from having underline
   show link: it => text(fill: colors.blue, underline(it))
   doc
+}
+
+#let appendix(body) = {
+  set heading(numbering: "A.1", supplement: [Appendix])
+  counter(heading).update(0)
+  body
 }
 
 #let abstr(content: "") = [

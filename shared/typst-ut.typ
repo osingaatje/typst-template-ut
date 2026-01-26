@@ -1,11 +1,13 @@
 // colors
 #let blue = rgb("#007D9C")
+#let lightblue = rgb("#E2EBFF")
 #let darkblue = rgb("#005D7D")
 #let navy = rgb("#002345")
 #let darkgray = rgb("#404040")
 
 #let colors = (
   blue: blue, 
+  lightblue: lightblue,
   darkblue: darkblue, 
   navy: navy, 
   darkgray: darkgray
@@ -20,7 +22,7 @@
   show cite: c => text(fill: blue, c)
   show ref: r => box(text(fill: blue, r))
   show figure.caption: c => box(inset: (left: 1pt, right: 1pt), text(fill: darkgray, size: 8pt, c))
-  show raw: r => text(font: "JetBrains Mono", r)
+  show raw: r => text(font: "JetBrains Mono", size: 1.1em, r)
 
   // footnote magic: settings the font size of the character
   set footnote(numbering: (t) =>
