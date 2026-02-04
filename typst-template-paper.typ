@@ -14,7 +14,11 @@
   show: styling // apply the styling from typst-ut document
 
   // specific raw styling colour
-  show raw: r => box(fill: colors.lightblue, radius: 2pt, inset: (left: 2pt, right: 2pt, top: 1pt, bottom: 1pt), text(fill: navy, r))
+  show raw: r => box(inset: (bottom: -2pt), 
+    box(fill: colors.lightblue, radius: 2pt, inset: (left: 2pt, right: 2pt, top: 1pt, bottom: 2pt), 
+      text(fill: navy, r)
+    )
+  )
 
   // Headings
   set heading(numbering: "1.")

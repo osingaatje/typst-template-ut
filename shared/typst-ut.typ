@@ -52,13 +52,20 @@
     font: "UniversNextW02",
     t
   )
+  //endregion
 
+  //region: TABLES
   // fix line spacing in table newlines
   show table: t => {
     set par(leading: 0.35em)
     t
   }
 
+  show table.cell.where(y: 0): c => { 
+    set block(fill: rgb("#252525"))
+    set text(fill: white)
+    c
+  }
   //endregion
 
   doc
