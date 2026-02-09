@@ -42,7 +42,7 @@
   show heading.where(level: 1): t => text(
     font: "UniversNW02-720CdHeavy",
     size: 18pt,
-    block(below: 1em, upper(t))
+    block(below: .5em, upper(t))
   )
   show heading: t => text(
     font: "UniversNW02-320CdLt",
