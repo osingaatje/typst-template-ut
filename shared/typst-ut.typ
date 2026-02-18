@@ -24,6 +24,8 @@
   show figure.caption: c => box(inset: (left: 1pt, right: 1pt), text(fill: darkgray, size: 8pt, c))
   show raw: r => text(font: "JetBrains Mono", size: 1.1em, r)
 
+  show bibliography: b => [  #set par(leading: 0.5em); #b ]
+
   // footnote magic: settings the font size of the character
   set footnote(numbering: (t) =>
     box(height: 8pt, width: 4pt, inset: (top: -6pt, left: 1pt), 
