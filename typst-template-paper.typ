@@ -10,7 +10,6 @@
   margin-y: 1.5cm,
   doc,
 ) = {
-  set page(numbering: "1 / 1")
   show: styling // apply the styling from typst-ut document
 
   // specific raw styling colour
@@ -111,6 +110,9 @@
 
   // link styling (must be after the main page to prevent email addresses from having underline
   show link: it => text(fill: colors.blue, underline(it))
+
+  set page(numbering: "1 / 1") // default page numbering is "1/12"
+
   doc
 }
 
