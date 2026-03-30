@@ -12,6 +12,10 @@
 ) = {
   show: styling // apply the styling from typst-ut document
 
+  show title: set text(size: 30pt)
+  show heading.where(level: 1): set text(size: 18pt)
+  show figure.caption: c => box(inset: (left: 1pt, right: 1pt), text(fill: darkgray, size: 8pt, c))
+  
   // specific raw styling colour
   show raw: r => box(inset: (bottom: -2pt), 
     box(fill: colors.lightblue, radius: 2pt, inset: (left: 2pt, right: 2pt, top: 1pt, bottom: 2pt), 

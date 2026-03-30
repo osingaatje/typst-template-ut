@@ -21,7 +21,6 @@
   // citation / reference / code fragment / figure caption styling (link styling at bottom of conf.typ)
   show cite: c => text(fill: blue, c)
   show ref: r => box(text(fill: blue, r))
-  show figure.caption: c => box(inset: (left: 1pt, right: 1pt), text(fill: darkgray, size: 8pt, c))
   show raw: r => text(font: "JetBrains Mono", size: 1.1em, r)
 
   show bibliography: b => [  #set par(leading: 0.5em); #b ]
@@ -37,13 +36,11 @@
   show title: t => text(
     font: "UniversNW02-720CdHeavy", 
     fill: white, 
-    size: 30pt, 
     t
   )
 
   show heading.where(level: 1): t => text(
     font: "UniversNW02-720CdHeavy",
-    size: 18pt,
     block(below: .5em, upper(t))
   )
   show heading: t => text(

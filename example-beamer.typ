@@ -9,12 +9,13 @@
 #let oo_pic = "shared/pics/oo.png"
 
 #show: project.with(
-  title: [This is the title of this presentation],
-  sub-title: "This is the subtitle",
+  titletext: [The title of this presentation],
+  sub-titletext: "This is the subtitle",
   author: "Student van der Achternaam",
   date: "16/01/2025",
 )
 
+#show heading.where(level: 1): h => [#set text(fill: white); #h]
 
 // Put table of contents anywhere you like
 #table-of-contents(index-title: "Contents")
@@ -62,10 +63,10 @@
   ... possible as well? Just open as many square brackets as you want!
 ]
   
-#set-main-color(rgb("#e200cb"))
+#set-main-color(color.hsl(306deg, 73%, 45%))
 
 = My favourite colour
-#block(width: 23cm)[
+#block(width: 65%)[
   #text(fill: white)[It is possible to change the colour of the presentation with the `#set-main-color` command!]
 ]
 
@@ -114,13 +115,13 @@ You can introduce a custom syntax highlighter with `.sublime-syntax`. For exampl
   ```
 ]
 
-#set-main-color(rgb("#2441e5"))
+#set-main-color(blue))
 
 = New big section
 
 == Enumeration?
 
-#let description-size = 16pt
+#let description-size = 14pt
 #columns-content()[
   1. List numbering is like one expects how to create a list with numbers.
   2. Another number
@@ -150,6 +151,7 @@ Aligning at the bottom usually looks best when you have two captions.
 ]
 
 #set-main-color(rgb("#e57424"))
+
 = Tables and Data
 
 == My tables
@@ -224,7 +226,7 @@ Next up, we will import lists of numbers defined in the `data` folder to create 
     // The diagram
     lq.diagram(
       title: "Results",
-      height: 96%,
+      height: 90%,
       width: 60%,
       ylabel: "Average Score",
       xaxis: (hidden: true),
@@ -261,7 +263,7 @@ Next up, we will import lists of numbers defined in the `data` folder to create 
   xs
 }
 #lq.diagram(
-  height: 100%,
+  height: 95%,
   width: 100%,
   title: [Precious data],
   xlabel: $x$, 
@@ -278,7 +280,7 @@ Next up, we will import lists of numbers defined in the `data` folder to create 
 #let (rng, colors) = suiji.uniform(rng, size: data1.len())
 #let (rng, sizes) = suiji.uniform(rng, size: data1.len())
 #lq.diagram(
-  height: 100%,
+  height: 90%,
   width: 100%,
   lq.scatter(
     data1, data2,

@@ -7,11 +7,15 @@
 #let state_sectionpage = state("section-page", false)
 #let main-color-state = state("main-color-state", none) // is set in the "project" function
 
+#let default-section-decoration(fillcol: white) = polygon(fill: fillcol,
+  (55%, 0%),
+  (100%, 0%),
+  (100%, 100%),
+  (90%, 100%),
+)
 
 #let set-main-color(main-color) = {
-  main-color-state.update(x =>
-    main-color
-  )
+  main-color-state.update(main-color)
 }
 
 // example usage: #columns-content [col1 content] [col2 content] [...etc.]
@@ -33,34 +37,54 @@
 }
 
 #let project(
-  title: [Title],
-  sub-title: [Subtitle],
+  titletext: [Title],
+  sub-titletext: [Subtitle],
   author: none,
   date: none,
   cover-image-path: "shared/pics/oo.png",
   aspect-ratio: "16-9",
   main-color: blue,
+  content-margin: 1.5cm,
   body
 ) = {
   show: styling // show shared font styling etc.
 
-  set document(title: title, author: author)
-  main-color-state.update(x =>
-    main-color
-  )
+  // show the opening page in white text, show title in specific size
+  show title: set text(size: 2em)
+  show heading.where(level: 1): set text(size: 1.75em)
+  show heading.where(level: 2): set text(size: 1.5em)
+  show heading.where(level: 3): set text(size: 1.25em)
+  set text(size: 1.5em)
+  show title: set par(leading: 0.3em)
+  show figure.caption: set text(size: 0.8em)
+
+  // figure / bib styling
+  set figure(gap: 10pt)
+  show bibliography: set heading(level: 2)
   set underline(offset: 3pt)
+
+  set document(title: titletext, author: author)
+  main-color-state.update(main-color)
+
+  // PAGE SETTINGS
   set page(
     margin: 0pt,
     paper: "presentation-" + aspect-ratio,
     footer: context if (counter(page).get() != 0) {
-      place(bottom+right, dx: 2em, dy: -1em,
+      place(bottom+right, dx: 0pt, dy: -.5*content-margin,
       numbering(
         "1 / 1",
         ..counter(page).get(),
         ..counter(page).final(),
-      )
-    ) } else { }
-  )
+      )) 
+    },
+    background: context{
+      if state_sectionpage.at(here()) {
+        rect(width: 100%, height: 100%, fill: main-color-state.at(here()))
+
+        place(right+horizon, box(width: 100%, height: 100%+2*content-margin, default-section-decoration()))
+      }
+    })
   // set par(justify: true) // hyphenation of long text
 
   set list(
@@ -75,72 +99,35 @@
 
   set enum(numbering: (..args) => context{text(fill:main-color-state.at(here()), numbering("1.", ..args))})
 
-  set figure(gap: 20pt)
-
-  show bibliography: set heading(level: 2)
-
-  let slide-polygon() = {
-    place(top+left, context polygon(
-      fill: main-color-state.at(here()),
-        (0cm, 0cm),
-        (0cm, 3cm),
-        (0.4cm, 3cm),
-        (0.4cm, 0cm),
-    ))
-  }
-
-  // Display the title page.
+  // TITLE PAGE:
   page(footer: [] /* no page numbering etc.*/, [
+
+    #set text(fill: white) // set text to white for title page
+
     #counter(page).update(0)
 
     #if (cover-image-path != none) {
       place(image(width: 100%, height: 100%, cover-image-path))
+
+      // semi-transparent rectangle to make contrast nice
+      place(block(fill: rgb("000000AA"), width: 100%, height: 100% + 1pt))
     }
 
-    #place(block(fill: rgb("000000AA"), width: 100%, height: 100% + 1pt))
-    #place(
-      polygon(
-    fill: main-color,
-      (100%, 0%),
-      (55%, 0%),
-      (80%, 100%),
-      (100%,  100%),
-    ))
-    
-    #pad(left: 1.5cm, right: 10cm, y: 1.5cm)[
-      #v(1fr)
-      #block(width: 15cm, upper(title))
-      
-      #v(0.5cm)      
-      #v(1fr)
-      #if author != none {
-         author
-      } --
-      #if date != none {
-          date
-      }
-    ]
+    // fancy turned square that breaks up the picture
+    #place(default-section-decoration(fillcol: blue))
+
+    // title + author
+    #place(left+horizon, 
+      block(inset: (left: content-margin), width: 60%, [
+        #title()
+
+        #if author != none { block(text(size: 1.25em, author)) }
+      ])
+    )
+
+    #if date != none { place(bottom+left, block(inset: (left: 1.5cm, bottom: content-margin),date)) } 
+
   ])
-
-  set page(
-    background: context{
-      if state_sectionpage.at(here()) {
-      rect(width: 100%, height: 100%, fill: main-color-state.at(here()))
-        place(horizon,
-          polygon(
-          fill: white,
-          (90%, 10%),
-          (90% - 1.2cm, 10%),
-          (90% - 1.2cm, 90%),
-          (90% - 1.2cm, 20%),
-          (90% - 1.2cm, 90% - 1.2cm),
-          (90% - 9cm,  90% - 1.2cm),
-          (90% - 9cm,  90%),
-          (90%, 90%),
-        ))
-    }
-  }
-  )
 
   set align(horizon)
 
@@ -149,26 +136,28 @@
     context text(fill: main-color-state.at(here()), it)
   )
 
-  // Slide subtitles
+  // TITLES IN CONTENT:
+  show heading.where(level: 1): h => [#set text(fill: white); #h]
+
   show heading.where(level: 1): it => [
-    #state_sectionpage.update(_ => true)
+    #state_sectionpage.update(true)
     #pagebreak(weak: true)
     #it
   ]
 
   show heading.where(level: 2): it => [
-    #state_sectionpage.update(_ => false )
+    #state_sectionpage.update(false )
     #pagebreak()
-    #it
+    #place(top+left, it)
   ]
 
   show heading.where(level: 3): it => [
     #pagebreak()
-    #it
+    #place(top+left, it)
   ]
 
   // -------- FINISHING TOUCHES -------- //
-  set page(margin: 4em)
+  set page(margin: content-margin)
   body // rest of the document
 }
 
