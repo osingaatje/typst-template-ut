@@ -4,14 +4,19 @@
 
 #import "shared/typst-ut.typ": *
 
-#let state_sectionpage = state("section-page", false)
-#let main-color-state = state("main-color-state", none) // is set in the "project" function
+#let main-color-state = state("main-color-state", colors.darkblue) // is set in the "project" function
 
-#let default-section-decoration(fillcol: white) = polygon(fill: fillcol,
+#let default-title-decoration(fillcol: white) = polygon(fill: fillcol,
   (55%, 0%),
   (100%, 0%),
   (100%, 100%),
   (90%, 100%),
+)
+#let default-section-decoration(fillcol: white) = polygon(fill: fillcol,
+  (90%, 0%),
+  (100%, 0%),
+  (100%, 100%),
+  (65%, 100%),
 )
 
 #let set-main-color(main-color) = {
@@ -49,6 +54,9 @@
 ) = {
   show: styling // show shared font styling etc.
 
+  // align everything to vertical center
+  set align(horizon)
+
   // show the opening page in white text, show title in specific size
   show title: set text(size: 2em)
   show heading.where(level: 1): set text(size: 1.75em)
@@ -66,20 +74,39 @@
   set document(title: titletext, author: author)
   main-color-state.update(main-color)
 
-  // PAGE SETTINGS
+  // METADATA HELPERS
+  // Returns the 'value' dictionary for this particular page.
+  // Example: metadata((page: <this page>, value: <dict> ) returns <dict>
+  let get_page_metadata(pageno: int) = { 
+    let md = query(<meta:page>).filter(f => f.value.at("page",default: 0) == pageno)
+    if md.len() == 0 {
+      (nothing: true)
+    } else {
+      md.first().value
+    }
+  }
+
+  // DEFAULT PAGE SETTINGS
   set page(
     margin: 0pt,
     paper: "presentation-" + aspect-ratio,
     footer: context if (counter(page).get() != 0) {
-      place(bottom+right, dx: 0pt, dy: -.5*content-margin,
-      numbering(
-        "1 / 1",
-        ..counter(page).get(),
-        ..counter(page).final(),
-      )) 
+      let fillcol = black
+      if get_page_metadata(pageno: here().page()).at("is_section", default:false) == true {
+        fillcol = main-color-state.get()
+      }
+
+      place(bottom+right, dx: 0pt, dy: -.5*content-margin, [
+        #set text(fill: fillcol)
+
+        #numbering(
+          "1 / 1",
+          ..counter(page).get(),
+          ..counter(page).final(),
+        )])
     },
     background: context{
-      if state_sectionpage.at(here()) {
+      if get_page_metadata(pageno: here().page()).at("is_section", default: false) {
         rect(width: 100%, height: 100%, fill: main-color-state.at(here()))
 
         place(right+horizon, box(width: 100%, height: 100%+2*content-margin, default-section-decoration()))
@@ -101,7 +128,6 @@
 
   // TITLE PAGE:
   page(footer: [] /* no page numbering etc.*/, [
-
     #set text(fill: white) // set text to white for title page
 
     #counter(page).update(0)
@@ -114,7 +140,7 @@
     }
 
     // fancy turned square that breaks up the picture
-    #place(default-section-decoration(fillcol: blue))
+    #place(default-title-decoration(fillcol: blue))
 
     // title + author
     #place(left+horizon, 
@@ -126,10 +152,8 @@
     )
 
     #if date != none { place(bottom+left, block(inset: (left: 1.5cm, bottom: content-margin),date)) } 
-
   ])
 
-  set align(horizon)
 
   // Link
   show link: it => underline(
@@ -140,13 +164,12 @@
   show heading.where(level: 1): h => [#set text(fill: white); #h]
 
   show heading.where(level: 1): it => [
-    #state_sectionpage.update(true)
     #pagebreak(weak: true)
+    #metadata((page: here().page(), is_section: true))<meta:page>
     #it
   ]
 
   show heading.where(level: 2): it => [
-    #state_sectionpage.update(false )
     #pagebreak()
     #place(top+left, it)
   ]

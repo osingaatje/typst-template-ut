@@ -14,7 +14,7 @@
 
   show title: set text(size: 30pt)
   show heading.where(level: 1): set text(size: 18pt)
-  show figure.caption: c => box(inset: (left: 1pt, right: 1pt), text(fill: darkgray, size: 8pt, c))
+  show figure.caption: c => box(inset: (left: 1pt, right: 1pt), text(fill: colors.darkgray, size: 8pt, c))
   
   // specific raw styling colour
   show raw: r => box(inset: (bottom: -2pt), 

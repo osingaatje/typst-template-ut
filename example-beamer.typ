@@ -98,7 +98,7 @@ print(f'Sum of {a} and {b} is {sum(a, b)}')
 == A new programming language?
 
 // Introduce Hedy keywords for a custom language
-#set raw(syntaxes: "shared/syntax/.sublime-syntax")
+#set raw(syntaxes: "shared/syntax/hedy.sublime-syntax")
 You can introduce a custom syntax highlighter with `.sublime-syntax`. For example, syntax highlighting for the Hedy programming language in Dutch!
 
 #columns-content()[
@@ -115,7 +115,7 @@ You can introduce a custom syntax highlighter with `.sublime-syntax`. For exampl
   ```
 ]
 
-#set-main-color(blue))
+#set-main-color(blue)
 
 = New big section
 
