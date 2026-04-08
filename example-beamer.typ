@@ -21,6 +21,7 @@
 #table-of-contents(index-title: "Contents")
 // Delete this line if you do not want the table of contents
 
+// YOUR CONTENT GOES BELOW HERE (after some adjustments above)
 = Start a Section
 
 == A slide title
