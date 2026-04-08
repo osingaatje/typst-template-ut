@@ -142,12 +142,12 @@ Aligning at the bottom usually looks best when you have two captions.
   #figure(
     image(oo_pic, width: 100%),
     caption: [lake],
-  ) <image_docentenhandleiding>
+  ) <image_lake>
 ][
   #figure(
     image(oo_pic, width: 100%),
     caption: [no lake],
-  ) <image_digibordapplicatie>
+  ) <image_no_lake>
 ]
 
 #set-main-color(rgb("#e57424"))
