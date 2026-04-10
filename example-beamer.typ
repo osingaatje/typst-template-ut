@@ -312,6 +312,6 @@ $ #x < 17 $
 - The bibliography is automatically generated based on the cited sources.
   - Add more sources in the `bibligraphy.bib` file in the `bib` directory.
 
-You can generate the bibliography with: `#bibliography(references.bib)` for example.
+You can generate the bibliography with: `#bibliography(references.bib)`.
 
 #bibliography("data/example-bib/bibliography.bib", style: "shared/bib/apa-no-ampersand.csl") // or using "shared/bib/modified-ieee.csl"
