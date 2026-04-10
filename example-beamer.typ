@@ -142,12 +142,12 @@ Aligning at the bottom usually looks best when you have two captions.
   #figure(
     image(oo_pic, width: 100%),
     caption: [lake],
-  ) <image_docentenhandleiding>
+  ) <image_lake>
 ][
   #figure(
     image(oo_pic, width: 100%),
     caption: [no lake],
-  ) <image_digibordapplicatie>
+  ) <image_no_lake>
 ]
 
 #set-main-color(rgb("#e57424"))
@@ -312,5 +312,6 @@ $ #x < 17 $
 - The bibliography is automatically generated based on the cited sources.
   - Add more sources in the `bibligraphy.bib` file in the `bib` directory.
 
-You can generate it with:
+You can generate the bibliography with: `#bibliography(references.bib)`.
+
 #bibliography("data/example-bib/bibliography.bib", style: "shared/bib/apa-no-ampersand.csl") // or using "shared/bib/modified-ieee.csl"
