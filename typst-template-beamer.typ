@@ -19,10 +19,10 @@
   (60%, 100%),
 )
 
-#let logo(version: "black", logo-width: 12%) = {
-  let ut-logo-path = "shared/pics/UT_Logo_Black.pdf"
+#let logo(version: "black", logo-width: 8%) = {
+  let ut-logo-path = "shared/pics/UT_Logo_Black-crop.pdf"
   if version == "white" {
-      ut-logo-path = "shared/pics/UT_Logo_White.pdf"
+      ut-logo-path = "shared/pics/UT_Logo_White-crop.pdf"
   }
   image(ut-logo-path, width: logo-width)
 }
@@ -120,7 +120,10 @@
 
         // BG decoration
         place(right+horizon, box(width: 100%, height: 100%+2*content-margin, default-section-decoration()))
+        
       }
+      // UT logo
+      place(top+right, dx: -1*content-margin, dy: 1*content-margin, logo())
     })
 
   set list(
@@ -162,7 +165,7 @@
     )
 
     // UT logo
-    #place(right+top, dx: -.5*content-margin, dy: .5*content-margin, logo(version: "white"))
+    #place(right+top, dx: -1*content-margin, dy: 1*content-margin, logo(version: "white", logo-width: 15%))
 
     // date
     #if date != none { place(bottom+left, block(inset: (left: 1.5cm, bottom: content-margin),date)) }
@@ -181,7 +184,6 @@
   show heading.where(level: 1): it => [
     #pagebreak(weak: true)
     #metadata((page: here().page(), is_section: true))<meta:page>
-    #place(top+right, dx: .5*content-margin, dy: -.5*content-margin, logo())
     #it
   ]
 
