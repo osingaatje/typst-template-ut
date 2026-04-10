@@ -2,11 +2,11 @@
 
 #let abstr(content) = [
   // Only add abstract if there is content
-  #if content.len() > 0 [
+  #if content != none and content != "" [
     #align(center, heading(level: 1, "Abstract", numbering: n => []))
       #counter(heading).update(n => 0) // make Abstract the 0th heading, so the actual numbered headings count from 1 onwards :)
     
-      #text(content)
+      #content
   ]
 ]
 
@@ -24,7 +24,7 @@
   faculty: "",
   margin-x: 1.5cm,
   margin-y: 1.5cm,
-  abstract: "",
+  abstract: none, // add an abstract directly here, or call it separately with `abstr` (handy for multi-column layouts)
   doc,
 ) = {
   show: styling // apply the styling from typst-ut document

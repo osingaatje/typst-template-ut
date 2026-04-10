@@ -45,10 +45,19 @@ Your content goes here. This example document shows some of the possibilities of
   - Or no number
     - Or no number
 
+== Two-column layouts!
+#columns(2, [
+=== Explanation
+Say the magic words (`#columns(2, [content])`) and thy columns will multiply!
+
+Here is some filler text to make the two-column layout appear nicer:
+
+#lorem(50)
+
 == Figure
 A figure can be added like this:
 #figure(
-    image("shared/pics/oo.png", width: 60%),
+    image("shared/pics/oo.png", width: 100%),
     caption: [This is part of the University of Twente],
   ) <image_oo>
 
@@ -91,6 +100,7 @@ Look in @tabellabel and @tabellabel2 for two amazing tables. Change the table st
       [C], [Username], [16], [4], [Somethree],
     )
   ) <tabellabel2>
+])
 
 = Programming time!
 
