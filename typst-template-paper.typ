@@ -1,13 +1,30 @@
 #import "shared/typst-ut.typ": styling, colors
 
+#let abstr(content) = [
+  // Only add abstract if there is content
+  #if content != none and content != "" [
+    #align(center, heading(level: 1, "Abstract", numbering: n => []))
+      #counter(heading).update(n => 0) // make Abstract the 0th heading, so the actual numbered headings count from 1 onwards :)
+    
+      #content
+  ]
+]
+
+#let appendix(body) = {
+  set heading(numbering: "A.1", supplement: [Appendix])
+  counter(heading).update(0)
+  body
+}
+
 #let conf(
   date: (),
   doctyp: [],
   authors: (),
   supervisors: (),
-  faculty: (),
+  faculty: "",
   margin-x: 1.5cm,
   margin-y: 1.5cm,
+  abstract: none, // add an abstract directly here, or call it separately with `abstr` (handy for multi-column layouts)
   doc,
 ) = {
   show: styling // apply the styling from typst-ut document
@@ -117,21 +134,9 @@
 
   set page(numbering: "1 / 1") // default page numbering is "1/12"
 
+  abstr(abstract)
+
   doc
 }
-
-#let appendix(body) = {
-  set heading(numbering: "A.1", supplement: [Appendix])
-  counter(heading).update(0)
-  body
-}
-
-#let abstr(content: "") = [
-  #align(center, heading(level: 1, "Abstract", numbering: n => []))
-    #counter(heading).update(n => 0) // make Abstract the 0th heading, so the actual numbered headings count from 1 onwards :)
-   
-    #text(content)
-]
-
 
 

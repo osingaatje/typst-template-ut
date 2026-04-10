@@ -1,6 +1,5 @@
 # typst-template-ut: An unofficial University of Twente Typst template
 Made by Douwe Osinga, inspired by previous work of Eli Saado.
-Beamer template inspired by work of Femke Weijsenfeld.
 
 # Fonts
 Local development with Typst and fonts is.. interesting. How I got my fonts to work was:
@@ -13,44 +12,21 @@ I recommend the following file structure:
 
 ```txt 
  |-typst-template-ut
- |  |-conf.typ
- |  |-...
+ |  |- shared
+ |  |- ...
+ |  |- example-beamer.typ
+ |  |- example-paper.typ
+ |  |- ...
  |
- |-your-file.typ
+ |-your-document.typ
  |-...
 ```
 
-..with `your-file.typ` (or whatever name you choose) containing the following use of the template (example is for the paper format):
-```typ
-#import "typst-template-ut/conf.typ" : conf
+We recommend copying `example-paper.typ` or `example-beamer.typ` to a file outside the `typst-template-ut` folder as seen in the example above, where it is named `your-document.typ`.
 
-#set document(title: "Your title")
+The example documents show some ideas of what can be done and can be a helpful start of your project!
 
-#show: conf.with(
-  doctyp: "Type of document",
-  //date: "some date or nothing for today",
-  authors: (
-    (
-      name: "Name Name",
-      email: "email@email.com",
-    ),
-  ),
-  supervisors: (
-    (
-      name: "Super Visor"
-      email: "sv@mail.com",
-    // institution: "some institution",
-    ),
-  ),
-  faculty: "Faculty of ... (or nothing for no text",
-  abstract: lorem(80),
-)
-#set page("a4", margin: 2cm, numbering: "1") // or some other formatting of the document
-
-Your Content Goes Here
-
-```
-
-Similar instructions apply for the beamer format :) 
-
+# Contributors
+- Eli Saado (for the idea of using Typst and the first paper template draft)
+- Femke Weijsenfeld (for making the examples and helping with improvements to the templates and README)
 
