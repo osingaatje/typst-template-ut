@@ -1,6 +1,5 @@
 # typst-template-ut: An unofficial University of Twente Typst template
 Made by Douwe Osinga, inspired by previous work of Eli Saado.
-Beamer template inspired by work of Femke Weijsenfeld.
 
 # Fonts
 Local development with Typst and fonts is.. interesting. How I got my fonts to work was:
@@ -25,6 +24,6 @@ We recommend copying `example-paper.typ` or `example-beamer.typ` to a file outsi
 The example documents show some ideas of what can be done and can be a helpful start of your project!
 
 # Contributors
-- Eli Saado (for the idea of using Typst and the first draft)
-- Femke Weijsenfeld (for making the beamer template and improving it after adoption into this project)
+- Eli Saado (for the idea of using Typst and the first paper template draft)
+- Femke Weijsenfeld (for making the examples and helping with improvements to the templates and README)
 
