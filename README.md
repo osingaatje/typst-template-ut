@@ -12,14 +12,17 @@ I recommend the following file structure:
 
 ```txt 
  |-typst-template-ut
- |  |-conf.typ
- |  |-...
+ |  |- shared
+ |  |- ...
+ |  |- example-beamer.typ
+ |  |- example-paper.typ
+ |  |- ...
  |
- |-your-file.typ
+ |-your-document.typ
  |-...
 ```
 
-We recommend copying `example-paper.typ` or `example-beamer.typ` to a file outside the `typst-template-ut` folder as seen in the example above. 
+We recommend copying `example-paper.typ` or `example-beamer.typ` to a file outside the `typst-template-ut` folder as seen in the example above, where it is named `your-document.typ`.
 
 The example documents show some ideas of what can be done and can be a helpful start of your project!
 
