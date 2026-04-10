@@ -27,6 +27,7 @@ We recommend copying `example-paper.typ` or `example-beamer.typ` to a file outsi
 The example documents show some ideas of what can be done and can be a helpful start of your project!
 
 # Contributors
+- Douwe (main contributor, maker of functions and fixer of bugs)
 - Eli Saado (for the idea of using Typst and the first paper template draft)
 - Femke Weijsenfeld (for making the examples and helping with improvements to the templates and README)
 
