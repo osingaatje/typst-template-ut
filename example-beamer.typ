@@ -281,7 +281,7 @@ Next up, we will import lists of numbers defined in the `data` folder to create 
 #let (rng, colors) = suiji.uniform(rng, size: data1.len())
 #let (rng, sizes) = suiji.uniform(rng, size: data1.len())
 #lq.diagram(
-  height: 90%,
+  height: 85%,
   width: 100%,
   lq.scatter(
     data1, data2,
