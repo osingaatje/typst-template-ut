@@ -54,13 +54,15 @@
   sub-titletext: [Subtitle],
   author: none,
   date: none,
+  bibstyle: none, // default == none - THIS IS A RELATIVE PATH FROM WITHIN THE `shared` FOLDER!
   background-img-path: "shared/pics/oo.png",
   aspect-ratio: "16-9",
   main-color: blue,
   content-margin: 1.5cm,
   body
 ) = {
-  show: styling // show shared font styling etc.
+  // set bibliography styles
+show: styling.with(bibstyle: bibstyle) // show shared font styling etc.
 
   // align everything to vertical center
   set align(horizon)

@@ -25,9 +25,10 @@
   margin-x: 1.5cm,
   margin-y: 1.5cm,
   abstract: none, // add an abstract directly here, or call it separately with `abstr` (handy for multi-column layouts)
+  bibstyle: none,
   doc,
 ) = {
-  show: styling // apply the styling from typst-ut document
+  show: styling.with(bibstyle: bibstyle) // apply the styling from typst-ut document
 
   show title: set text(size: 30pt)
   show heading.where(level: 1): set text(size: 18pt)

@@ -13,6 +13,7 @@
   sub-titletext: "This is the subtitle",
   author: "Student van der Achternaam",
   date: "16/01/2025",
+  bibstyle: "../shared/bib/apa-no-ampersand.csl", // relative to the `typst-ut` shared Typst file
 )
 
 #show heading.where(level: 1): h => [#set text(fill: white); #h]
@@ -315,4 +316,4 @@ $ #x < 17 $
 
 You can generate the bibliography with: `#bibliography(references.bib)`.
 
-#bibliography("data/example-bib/bibliography.bib", style: "shared/bib/apa-no-ampersand.csl") // or using "shared/bib/modified-ieee.csl"
+#bibliography("data/example-bib/bibliography.bib")
