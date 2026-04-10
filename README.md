@@ -20,4 +20,11 @@ I recommend the following file structure:
  |-...
 ```
 
-We recommend copying `example-paper.typ` or `example-beamer.typ` and working in the new document (`your-file.typ` or whatever you call it). The example documents show some ideas of what can be done and can be a helpful start of your project!
+We recommend copying `example-paper.typ` or `example-beamer.typ` to a file outside the `typst-template-ut` folder as seen in the example above. 
+
+The example documents show some ideas of what can be done and can be a helpful start of your project!
+
+# Contributors
+- Eli Saado (for the idea of using Typst and the first draft)
+- Femke Weijsenfeld (for making the beamer template and improving it after adoption into this project)
+
