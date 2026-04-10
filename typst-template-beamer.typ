@@ -13,11 +13,19 @@
   (90%, 100%),
 )
 #let default-section-decoration(fillcol: white) = polygon(fill: fillcol,
-  (90%, 0%),
+  (87.5%, 0%),
   (100%, 0%),
   (100%, 100%),
-  (65%, 100%),
+  (60%, 100%),
 )
+
+#let logo(version: "black", logo-width: 12%) = {
+  let ut-logo-path = "shared/pics/UT_Logo_Black.pdf"
+  if version == "white" {
+      ut-logo-path = "shared/pics/UT_Logo_White.pdf"
+  }
+  image(ut-logo-path, width: logo-width)
+}
 
 #let set-main-color(main-color) = {
   main-color-state.update(main-color)
@@ -46,7 +54,7 @@
   sub-titletext: [Subtitle],
   author: none,
   date: none,
-  cover-image-path: "shared/pics/oo.png",
+  background-img-path: "shared/pics/oo.png",
   aspect-ratio: "16-9",
   main-color: blue,
   content-margin: 1.5cm,
@@ -96,7 +104,7 @@
         fillcol = main-color-state.get()
       }
 
-      place(bottom+right, dx: 0pt, dy: -.5*content-margin, [
+      place(bottom+right, dx: 0pt, dy: -.75*content-margin, [
         #set text(fill: fillcol)
 
         #numbering(
@@ -107,12 +115,13 @@
     },
     background: context{
       if get_page_metadata(pageno: here().page()).at("is_section", default: false) {
+        // BG color
         rect(width: 100%, height: 100%, fill: main-color-state.at(here()))
 
+        // BG decoration
         place(right+horizon, box(width: 100%, height: 100%+2*content-margin, default-section-decoration()))
       }
     })
-  // set par(justify: true) // hyphenation of long text
 
   set list(
       tight:true, indent: 0.27cm, body-indent: 0.7cm, 
@@ -132,14 +141,15 @@
 
     #counter(page).update(0)
 
-    #if (cover-image-path != none) {
-      place(image(width: 100%, height: 100%, cover-image-path))
+    // background image
+    #if (background-img-path != none) {
+      place(image(width: 100%, height: 100%, background-img-path))
 
       // semi-transparent rectangle to make contrast nice
       place(block(fill: rgb("000000AA"), width: 100%, height: 100% + 1pt))
     }
 
-    // fancy turned square that breaks up the picture
+    // decoration to break up the background picture
     #place(default-title-decoration(fillcol: blue))
 
     // title + author
@@ -151,7 +161,12 @@
       ])
     )
 
-    #if date != none { place(bottom+left, block(inset: (left: 1.5cm, bottom: content-margin),date)) } 
+    // UT logo
+    #place(right+top, dx: -.5*content-margin, dy: .5*content-margin, logo(version: "white"))
+
+    // date
+    #if date != none { place(bottom+left, block(inset: (left: 1.5cm, bottom: content-margin),date)) }
+
   ])
 
 
@@ -166,6 +181,7 @@
   show heading.where(level: 1): it => [
     #pagebreak(weak: true)
     #metadata((page: here().page(), is_section: true))<meta:page>
+    #place(top+right, dx: .5*content-margin, dy: -.5*content-margin, logo())
     #it
   ]
 
