@@ -4,13 +4,19 @@
 // Create graphs
 #import "@preview/lilaq:0.5.0" as lq
 
+// Change prefix to folder name by uncommenting if you use the recommended folder structure
+#let prefix = ""
+// #let prefix = "typst-template-ut/"
+
 // Paths used for imports and example data
-#import "typst-template-beamer.typ" : *
-#let oo_pic = "shared/pics/oo.png"
-#let hedy_syntax = "shared/syntax/hedy.sublime-syntax"
-#let method_figure_path = "data/example-graph-data/method.typ"
-#let graph_data_path = "data/example-graph-data/graph_data.typ"
-#let example_bib_path = "data/example-bib/bibliography.bib"
+#let template_path = prefix + "typst-template-beamer.typ"
+#let oo_pic = prefix + "shared/pics/oo.png"
+#let hedy_syntax = prefix + "shared/syntax/hedy.sublime-syntax"
+#let method_figure_path = prefix + "data/example-graph-data/method.typ"
+#let graph_data_path = prefix + "data/example-graph-data/graph_data.typ"
+#let example_bib_path = prefix + "data/example-bib/bibliography.bib"
+
+#import template_path : *
 
 #show: project.with(
   titletext: [The title of this presentation],
