@@ -2,10 +2,12 @@
 Made by Douwe Osinga, inspired by previous work of Eli Saado.
 
 # Fonts
-Local development with Typst and fonts is.. interesting. How I got my fonts to work was:
-1. Copy the fonts to your fonts directory (on Linux: `usr/share/fonts`, MacOS: no clue, sorry) or install them (Windows)
+Local development with Typst and fonts is... interesting. How I got my fonts to work was:
+1. Copy the fonts from `shared/fonts` to your fonts directory (on Linux: `usr/share/fonts`, MacOS: no clue, sorry) or install them (Windows)
 2. On Linux: make sure to reload your fonts (on Arch: `fc-cache`).
-3. Compile with `typst compile` or your favourite editor integration and enjoy!
+
+# Compiling Typst
+Compile with `typst compile` or your favourite editor integration and enjoy!
 
 # Using the Template
 I recommend the following file structure:
