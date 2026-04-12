@@ -22,7 +22,11 @@ I recommend the following file structure:
  |-...
 ```
 
-We recommend copying `example-paper.typ` or `example-beamer.typ` to a file outside the `typst-template-ut` folder as seen in the example above, where it is named `your-document.typ`.
+We recommend copying `example-paper.typ` or `example-beamer.typ` to a file outside the `typst-template-ut` folder as seen in the example above, where it is named `your-document.typ`. This will keep your repo clean. However, when copying, some imports will break. To fix that, uncomment the following line:
+
+```Typst
+#let prefix = "typst-template-ut/"
+```
 
 The example documents show some ideas of what can be done and can be a helpful start of your project!
 
