@@ -1,10 +1,21 @@
-#import "typst-template-paper.typ" : *
-
 // Write code in code blocks
 #import "@preview/zebraw:0.6.1": *
 #show: zebraw
 // Create graphs
 #import "@preview/lilaq:0.5.0" as lq
+
+// Change prefix to folder name by uncommenting if you use the recommended folder structure
+#let prefix = ""
+// #let prefix = "typst-template-ut/"
+
+// Paths used for imports and example data
+#let template_path = prefix + "typst-template-paper.typ"
+#let oo_pic = prefix + "shared/pics/oo.png"
+#let hedy_syntax = prefix + "shared/syntax/hedy.sublime-syntax"
+#let graph_data_path = prefix + "data/example-graph-data/graph_data.typ"
+#let example_bib_path = prefix + "data/example-bib/bibliography.bib"
+
+#import template_path : *
 
 #set document(title: "Your title")
 
@@ -25,6 +36,7 @@
     ),
   ),
   faculty: "Faculty of ... (or nothing for no text)",
+  bibstyle: "../shared/bib/modified-ieee.csl", // relative to the `typst-ut` shared Typst file
   abstract: "This is the abstract (or remove for no abstract). " + lorem(80),
 )
 #set page("a4", margin: 2cm, numbering: "1") // or some other formatting of the document
@@ -57,7 +69,7 @@ Here is some filler text to make the two-column layout appear nicer:
 == Figure
 A figure can be added like this:
 #figure(
-    image("shared/pics/oo.png", width: 100%),
+    image(oo_pic, width: 100%),
     caption: [This is part of the University of Twente],
   ) <image_oo>
 
@@ -121,7 +133,7 @@ print(f'Sum of {a} and {b} is {sum(a, b)}')
 == A new programming language?
 
 // Introduce Hedy keywords for a custom language
-#set raw(syntaxes: "shared/syntax/hedy.sublime-syntax")
+#set raw(syntaxes: hedy_syntax)
 You can introduce a custom syntax highlighter with `.sublime-syntax`. For example, syntax highlighting for the Hedy programming language in Dutch!
 
 *Syntax in level 3:*
@@ -139,7 +151,7 @@ print "Ik wil: " keuzes[random]
 #pagebreak() // Start on new page
 = Graphs
 // Import some data for the graphs
-#import "data/example-graph-data/graph_data.typ" : *
+#import graph_data_path : *
 You can find more about graphs here: #link("https://typst.app/universe/package/lilaq/")
 
 == Graphs! Line Chart.
@@ -192,4 +204,4 @@ $ cal(A) :=
 $ #x < 17 $
 
 
-#bibliography("data/example-bib/bibliography.bib", style: "shared/bib/apa-no-ampersand.csl") // or using "shared/bib/modified-ieee.csl"
+#bibliography(example_bib_path)

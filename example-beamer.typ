@@ -1,12 +1,22 @@
-#import "typst-template-beamer.typ" : *
-
 // Write code in code blocks
 #import "@preview/zebraw:0.6.1": *
 #show: zebraw
 // Create graphs
 #import "@preview/lilaq:0.5.0" as lq
 
-#let oo_pic = "shared/pics/oo.png"
+// Change prefix to folder name by uncommenting if you use the recommended folder structure
+#let prefix = ""
+// #let prefix = "typst-template-ut/"
+
+// Paths used for imports and example data
+#let template_path = prefix + "typst-template-beamer.typ"
+#let oo_pic = prefix + "shared/pics/oo.png"
+#let hedy_syntax = prefix + "shared/syntax/hedy.sublime-syntax"
+#let method_figure_path = prefix + "data/example-graph-data/method.typ"
+#let graph_data_path = prefix + "data/example-graph-data/graph_data.typ"
+#let example_bib_path = prefix + "data/example-bib/bibliography.bib"
+
+#import template_path : *
 
 #show: project.with(
   titletext: [The title of this presentation],
@@ -100,7 +110,7 @@ print(f'Sum of {a} and {b} is {sum(a, b)}')
 == A new programming language?
 
 // Introduce Hedy keywords for a custom language
-#set raw(syntaxes: "shared/syntax/hedy.sublime-syntax")
+#set raw(syntaxes: hedy_syntax)
 You can introduce a custom syntax highlighter with `.sublime-syntax`. For example, syntax highlighting for the Hedy programming language in Dutch!
 
 #columns-content()[
@@ -198,8 +208,8 @@ Look in @tabellabel and @tabellabel2 for two amazing tables. Change the table st
 ]
 == Method
 
-// For simplicity, this chart is created in another Typst file
-#import "data/example-graph-data/method.typ" : methode-diagram
+// For simplicity, this chart is created in another Typst file and imported
+#import method_figure_path : methode-diagram
 #methode-diagram
 
 #set-main-color(rgb("#e52424"))
@@ -217,7 +227,7 @@ Did you ever dream of using three `===`? Well, you can! Because that will result
 Next up, we will import lists of numbers defined in the `data` folder to create graphs.
 
 === Graphs! Box Plot.
-#import "data/example-graph-data/graph_data.typ" : *
+#import graph_data_path : *
 
 #show figure: set block(spacing: 5em)
 #figure(
@@ -316,4 +326,4 @@ $ #x < 17 $
 
 You can generate the bibliography with: `#bibliography(references.bib)`.
 
-#bibliography("data/example-bib/bibliography.bib")
+#bibliography(example_bib_path)
