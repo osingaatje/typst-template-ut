@@ -9,6 +9,8 @@ Local development with Typst and fonts is... interesting. How I got my fonts to 
 # Compiling Typst
 Compile with `typst compile` or your favourite editor integration and enjoy!
 
+**NOTE**: With some PDF viewers, it is also possible to 'watch' the typst file and have the PDF update with every file change. This is done using `typst watch`, see the Typst docs for more info.
+
 # Using the Template
 I recommend the following file structure:
 
