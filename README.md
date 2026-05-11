@@ -1,6 +1,8 @@
 # typst-template-ut: An unofficial University of Twente Typst template
 Made by Douwe Osinga, inspired by previous work of Eli Saado.
 
+**NOTE**: This repository is mirrored from [Codeberg](https://codeberg.org/drwr/ut-master-thesis) to [Github](https://github.com/osingaatje/typst-template-ut).
+
 # Fonts
 Local development with Typst and fonts is... interesting. How I got my fonts to work was:
 1. Copy the fonts from `shared/fonts` to your fonts directory (on Linux: `usr/share/fonts`, MacOS: no clue, sorry) or install them (Windows)
