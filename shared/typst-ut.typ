@@ -26,6 +26,15 @@
   show cite: c => text(fill: blue, c)
   show ref: r => box(text(fill: blue, r))
   show raw: r => text(font: "JetBrains Mono", size: 1.1em, r)
+  
+  show raw.where(block: true): code => {
+    show raw.line: it => {
+      text(fill: gray)[#it.number]
+      h(1em)
+      it.body
+    } 
+    code
+  }
 
   show bibliography: b => [  #set par(leading: 0.5em); #b ]
 

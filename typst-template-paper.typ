@@ -36,7 +36,7 @@
   
   // specific raw styling colour
   show raw: r => box(inset: (bottom: -2pt), 
-    box(fill: colors.lightblue, radius: 2pt, inset: (left: 2pt, right: 2pt, top: 1pt, bottom: 2pt), 
+    box(fill: colors.lightblue, radius: 2pt, inset: (left: 2pt, right: 2pt, top: 2pt, bottom: 2pt), 
       text(fill: navy, r)
     )
   )
