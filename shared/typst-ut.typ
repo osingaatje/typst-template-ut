@@ -26,7 +26,9 @@
   show cite: c => text(fill: blue, c)
   show ref: r => box(text(fill: blue, r))
   show raw: r => text(font: "JetBrains Mono", size: 1.1em, r)
-  
+ 
+  show math.equation: m => text(font:"New Computer Modern Math", m) 
+
   show raw.where(block: true): code => {
     show raw.line: it => {
       text(fill: gray)[#it.number]
