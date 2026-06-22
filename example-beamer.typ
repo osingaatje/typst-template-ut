@@ -23,6 +23,7 @@
   sub-titletext: "This is the subtitle",
   author: "Student van der Achternaam",
   date: "16/01/2025",
+  citestyle: "../shared/bib/apa-no-ampersand.csl",
   bibstyle: "../shared/bib/apa-no-ampersand.csl", // relative to the `typst-ut` shared Typst file
 )
 

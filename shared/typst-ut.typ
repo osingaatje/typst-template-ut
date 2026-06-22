@@ -13,13 +13,16 @@
   darkgray: darkgray
 )
 
-#let styling(bibstyle: none, doc) = {
+#let styling(citestyle: none, bibstyle: none, doc) = {
   if bibstyle == none {
-    bibstyle = "bib/modified-ieee.csl"  
+    bibstyle = "ieee"
+  }
+  if citestyle == none {
+    citestyle = "bib/modified-ieee.csl"  
   }
 
   // default citation style
-  set cite(style: bibstyle)
+  set cite(style: citestyle)
   set bibliography(style: bibstyle)
 
   // citation / reference / code fragment / figure caption styling (link styling at bottom of conf.typ)

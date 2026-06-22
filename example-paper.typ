@@ -36,7 +36,8 @@
     ),
   ),
   faculty: "Faculty of ... (or nothing for no text)",
-  bibstyle: "../shared/bib/modified-ieee.csl", // relative to the `typst-ut` shared Typst file
+  citestyle: "../shared/bib/modified-ieee.csl", // relative to the `typst-ut` shared Typst file
+  bibstyle: "ieee",
   abstract: "This is the abstract (or remove for no abstract). " + lorem(80),
 )
 #set page("a4", margin: 2cm, numbering: "1") // or some other formatting of the document
