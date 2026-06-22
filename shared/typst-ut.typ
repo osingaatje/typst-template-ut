@@ -25,7 +25,7 @@
   // citation / reference / code fragment / figure caption styling (link styling at bottom of conf.typ)
   show cite: c => text(fill: blue, c)
   show ref: r => box(text(fill: blue, r))
-  show raw: r => text(font: "JetBrains Mono", size: 1.1em, r)
+  show raw: r => text(font: "Jetbrains Mono", size: 1.2em, r)
  
   show math.equation: m => text(font:"New Computer Modern Math", m) 
 
@@ -42,10 +42,11 @@
 
   // footnote magic: settings the font size of the character
   set footnote(numbering: (t) =>
-    box(height: 0pt, width: 4pt, inset: (top: -8pt, left: 1pt), 
+    box(height: 0pt, width: 3pt, inset: (top: -9pt, left: -1pt), 
       text(fill: blue, size: 28pt, str(t))
     )
   ) // some weird thing with the UT fonts I guess.
+  set footnote.entry(clearance: 0.2em, separator: box(inset: (bottom: 2pt), line(length: 35% + 0pt, stroke: 0.03em+navy)))
 
   //region: FONTS
   show title: t => text(
