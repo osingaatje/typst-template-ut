@@ -15,7 +15,7 @@
 
 #let styling(citestyle: none, bibstyle: none, doc) = {
   if bibstyle == none {
-    bibstyle = "ieee"
+    bibstyle = "bib/modified-ieee-all-authors.csl"
   }
   if citestyle == none {
     citestyle = "bib/modified-ieee.csl"  
