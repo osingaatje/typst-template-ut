@@ -28,7 +28,7 @@
   // citation / reference / code fragment / figure caption styling (link styling at bottom of conf.typ)
   show cite: c => text(fill: blue, c)
   show ref: r => box(text(fill: blue, r))
-  show raw: r => text(font: "Jetbrains Mono", size: 1.2em, r)
+  show raw: r => text(font: "Jetbrains Mono", r)
  
   show math.equation: m => text(font:"New Computer Modern Math", m) 
 
