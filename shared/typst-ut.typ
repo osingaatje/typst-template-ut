@@ -1,3 +1,19 @@
+// HELPER METHODS
+// inspired from https://forum.typst.app/t/how-to-reference-multiple-figures-at-once/7854/3
+#let multiref(..args, join: ",", last: " and") = context{
+  let tags = args.pos()
+  let fig = query(tags.first()).first()
+  let suppl = fig.supplement
+  
+  if tags.len() >= 2 { suppl + "s" } else { suppl }  // assumes we get the plural by adding an "s" to the singular form
+  ref(tags.first(), supplement: "")  // figure number, alternatively our do something with the fig.counter
+  for key in tags.slice(1, -1) {
+    ref(key, supplement: join)
+  }
+  ref(tags.last(), supplement: last)
+  // Figure 1; Figures 1 and 2; Figures 1, 2 and 3
+}
+
 // colors
 #let blue = rgb("#007D9C")
 #let lightblue = rgb("#E2EBFF")

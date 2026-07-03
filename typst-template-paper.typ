@@ -1,4 +1,6 @@
-#import "shared/typst-ut.typ": styling, colors
+#import "shared/typst-ut.typ": styling, colors, multiref
+
+#let multiref = multiref
 
 #let abstr(content) = [
   // Only add abstract if there is content
