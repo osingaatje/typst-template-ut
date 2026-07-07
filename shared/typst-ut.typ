@@ -65,7 +65,7 @@
       text(fill: blue, size: 28pt, str(t))
     )
   ) // some weird thing with the UT fonts I guess.
-  set footnote.entry(clearance: 0.2em, separator: box(inset: (bottom: 2pt), line(length: 35% + 0pt, stroke: 0.03em+navy)))
+  set footnote.entry(clearance: 0.2em, separator: box(inset: (top: 1pt, bottom: 1pt), line(length: 35% + 0pt, stroke: 0.025em+navy)))
 
   //region: FONTS
   show title: t => text(
