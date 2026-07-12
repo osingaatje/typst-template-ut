@@ -4,6 +4,8 @@
 
 #import "shared/typst-ut.typ": *
 
+#let appendix = appendix
+
 #let main-color-state = state("main-color-state", colors.darkblue) // is set in the "project" function
 
 #let default-title-decoration(fillcol: white) = polygon(fill: fillcol,

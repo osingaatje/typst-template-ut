@@ -29,6 +29,12 @@
   darkgray: darkgray
 )
 
+#let appendix(body) = {
+  set heading(numbering: "A.1:", supplement: [Appendix])
+  counter(heading).update(0)
+  body
+}
+
 #let styling(citestyle: none, bibstyle: none, doc) = {
   if bibstyle == none {
     bibstyle = "bib/modified-ieee-all-authors.csl"

@@ -1,4 +1,4 @@
-#import "shared/typst-ut.typ": styling, colors, multiref
+#import "shared/typst-ut.typ": *
 
 #let multiref = multiref
 
@@ -12,11 +12,7 @@
   ]
 ]
 
-#let appendix(body) = {
-  set heading(numbering: "A.1", supplement: [Appendix])
-  counter(heading).update(0)
-  body
-}
+#let appendix = appendix
 
 #let conf(
   date: (),
