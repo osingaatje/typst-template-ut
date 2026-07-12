@@ -61,7 +61,7 @@
 
   // footnote magic: settings the font size of the character
   set footnote(numbering: (t) =>
-    box(height: 0pt, width: 3pt, inset: (top: -9pt, left: -1pt), 
+    box(height: 5pt, width: 3pt, inset: (top: -10pt),
       text(fill: blue, size: 28pt, str(t))
     )
   ) // some weird thing with the UT fonts I guess.
