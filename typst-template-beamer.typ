@@ -9,16 +9,16 @@
 #let main-color-state = state("main-color-state", colors.darkblue) // is set in the "project" function
 
 #let default-title-decoration(fillcol: white) = polygon(fill: fillcol,
-  (55%, 0%),
+  (60%, 0%),
   (100%, 0%),
   (100%, 100%),
-  (90%, 100%),
+  (86.5%, 100%),
 )
 #let default-section-decoration(fillcol: white) = polygon(fill: fillcol,
   (87.5%, 0%),
   (100%, 0%),
   (100%, 100%),
-  (60%, 100%),
+  (65%, 100%),
 )
 
 #let logo(version: "black", logo-width: 8%) = {
@@ -54,7 +54,7 @@
 #let project(
   titletext: [Title],
   sub-titletext: [Subtitle],
-  author: none,
+  author: [ Author ],
   date: none,
   bibstyle: none, // default == none - THIS IS A RELATIVE PATH FROM WITHIN THE `shared` FOLDER!
   citestyle: none, // default == none - THIS IS A RELATIVE PATH FROM WITHIN THE `shared` FOLDER!
@@ -75,6 +75,7 @@
   show heading.where(level: 1): set text(size: 1.75em)
   show heading.where(level: 2): set text(size: 1.5em)
   show heading.where(level: 3): set text(size: 1.25em)
+
   set text(size: 1.5em)
   show title: set par(leading: 0.3em)
   show figure.caption: set text(size: 0.8em)
@@ -124,8 +125,7 @@
         rect(width: 100%, height: 100%, fill: main-color-state.at(here()))
 
         // BG decoration
-        place(right+horizon, box(width: 100%, height: 100%+2*content-margin, default-section-decoration()))
-        
+        place(right+horizon, box(width: 100%, height: 100%+2*content-margin, default-section-decoration()))  
       }
       // UT logo
       place(top+right, dx: -1*content-margin, dy: 1*content-margin, logo())
@@ -164,6 +164,7 @@
     #place(left+horizon, 
       block(inset: (left: content-margin), width: 60%, [
         #title()
+        #block(inset: (top: -1em), [#sub-titletext])
 
         #if author != none { block(text(size: 1.25em, author)) }
       ])
@@ -183,10 +184,8 @@
     context text(fill: main-color-state.at(here()), it)
   )
 
-  // TITLES IN CONTENT:
-  show heading.where(level: 1): h => [#set text(fill: white); #h]
-
   show heading.where(level: 1): it => [
+    #set text(fill: white)
     #pagebreak(weak: true)
     #metadata((page: here().page(), is_section: true))<meta:page>
     #it
@@ -194,12 +193,12 @@
 
   show heading.where(level: 2): it => [
     #pagebreak()
-    #place(top+left, it)
+    #place(top+left, float: true, it)
   ]
 
   show heading.where(level: 3): it => [
-    #pagebreak()
-    #place(top+left, it)
+    /*#pagebreak()
+    #place(top+left,*/#it
   ]
 
   // -------- FINISHING TOUCHES -------- //
